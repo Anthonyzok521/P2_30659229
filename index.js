@@ -3,6 +3,6 @@ const app = express()
 
 app.get('/', function(req, res){
 
-	res.send("LOL")
+	res.send(<h1>Hola</h1>)
 })
 app.listen(process.env.PORT || 5000)
