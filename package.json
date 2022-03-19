@@ -8,7 +8,7 @@
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "AC GAMES",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.3"
