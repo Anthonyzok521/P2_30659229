@@ -1,8 +1,9 @@
-const express = require("express")
-const app = express()
+const express = require("express");
+const app = express();
+const path = require("path");
 
-app.get('/', function(req, res){
+app.get('/', (req, res)=>{
 
-	res.send(<h1>Hola</h1>)
-})
-app.listen(process.env.PORT || 5000)
+	res.sendFile('__dirname + "/index.html');
+});
+app.listen(process.env.PORT || 5000);
