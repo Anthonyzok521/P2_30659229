@@ -5,57 +5,77 @@
   <meta charset = "iso-8859-1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="theme-color" content="#1f2732"/>
   <title>Curriculum Vitae (cv) Anthony Carrillo</title>
   <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body>
 
-  <div>
-    <img src="images/ACGAMES.jpg" width="130px" height="130px">
-    <center>
-    <h1>Anthony Carrillo</h1>
-    <small>Ingeniero de Software</small>
-    <hr>
-    <p class="resumen">Soy un ingeniero de software, desarrollo apps para escritorio(PCs) y dispositivos m&oacute;viles(Android) con 3 a&ntilde;os de experiencia creando programas y videojuegos b&aacute;sicos bajo mi misma "empresa" AC GAMES.</p> 
-    </center>
-    <fieldset>
-      <legend>Habilidades</legend>
-      <ul>
-        <li>Escribiendo c&oacute;digo.</li>
-        <li>Crear videojuegos.</li>
-        <li>Desarrollar programas multiplataforma.</li>
-        <li>Mantenimiento a computadoras.</li>
-        <li>Instalaci&oacute;n de software y sistema operativo.</li>
-        <li>C++, C# y Python.
-        <li>MySQL.</li>
-        <li>GIMP, Photoshop e Inkscape.</li>
-      </ul>
-    </fieldset>
+  <div class="container">
+    <div class="title">
+      <img src="images/ACGAMES.jpg" width="130px" height="130px">
+      <div class="resume">
+        <h1>Anthony Carrillo</h1>
+        <small>Ingeniero de Software</small>
+        <p>Soy un ingeniero de software, desarrollo apps para escritorio(PCs) y dispositivos m&oacute;viles(Android) con 3 a&ntilde;os de experiencia creando programas y videojuegos b&aacute;sicos bajo mi misma "empresa" AC GAMES.</p> 
+      </div>
+    </div>
 
-    <fieldset>
-      <legend>Experiencia</legend>
+    <main>
+    <section class="skill">
+      <h2>Habilidades</h2>
+      <ul>
+        <li><i class="point">• </i>Escribiendo c&oacute;digo.</li>
+        <li><i class="point">• </i>Crear videojuegos.</li>
+        <li><i class="point">• </i>Desarrollar programas multiplataforma.</li>
+        <li><i class="point">• </i>Mantenimiento a computadoras.</li>
+        <li><i class="point">• </i>Instalaci&oacute;n de software y sistema operativo.</li>
+        <li><i class="point">• </i>C++, C# y Python.
+        <li><i class="point">• </i>MySQL.</li>
+        <li><i class="point">• </i>GIMP, Photoshop e Inkscape.</li>
+      </ul>
+    </section>
+
+    <section class="exp">
+      <h2>Experiencia</h2>
       <b>Ingeniero de software junior</b><br>
       <small><i>AC GAMES | 2020-pesente</i></small>
       <p>Desarrollador, instalo y configuro aplicaciones, dise&ntilde;o gr&aacute;fico, testeo de apliciones, lanzamiento de la aplicaci&oacute;n, trabajar con simbolo del sistema, crear versiones de respaldo con git y limpieza de las computadoras.</p>
-    </fieldset>
+    </section>
 
-    <fieldset>
-      <legend>Educaci&oacute;n</legend>
+    <section class="educt">
+      <h2>Educaci&oacute;n</h2>
       <ul>
-      <li>Bachillerato en U.E.P "Juan de Bol&iacute;var y Villegas" Villa de Cura, Estado Aragua.</li>
-      <li>Grado de estudio: Actualmente universitario en la Uiversidad Nacional Experimental R&oacute;mulo Gallegos(UNERG), Ingenier&iacute;a de Sistemas(AIS), San Juan de los Morros, Estado Gu&aacute;rico. </li>
+      <li><i class="point">• </i>Bachillerato en U.E.P "Juan de Bol&iacute;var y Villegas" Villa de Cura, Estado Aragua.</li>
+      <li><i class="point">• </i>Grado de estudio: Actualmente universitario en la Uiversidad Nacional Experimental R&oacute;mulo Gallegos(UNERG), Ingenier&iacute;a de Sistemas(AIS), San Juan de los Morros, Estado Gu&aacute;rico. </li>
     </ul>
-    </fieldset>
+  </section>
 
-    <fieldset>
-      <legend>Contacto</legend>
+    <section class="contact">
+      <h2>Contacto</h2>
       <p><b>Telf: </b><i>0412-1438904</i></p>    
       <ul>
-        <li><b>Correo: </b><i><a href="https://anthonyzok521@gmail.com">anthonyzok521@gmail.com</a></i></li>
-        <li><b>Twitter: </b><i><a href="https://twitter.com/AC_GAMES_">@AC_GAMES_</a></i></li>
-        <li><b>Itch.io: </b><i><a href="https://acgames-developer.itch.io">https://acgames-developer.itch.io</a></i></li>
+        <li><i class="point">• </i><b>Correo: </b><i><a href="https://anthonyzok521@gmail.com">anthonyzok521@gmail.com</a></i></li>
+        <li><i class="point">• </i><b>Twitter: </b><i><a href="https://twitter.com/AC_GAMES_">@AC_GAMES_</a></i></li>
+        <li><i class="point">• </i><b>Itch.io: </b><i><a href="https://acgames-developer.itch.io">https://acgames-developer.itch.io</a></i></li>
       </ul>
-    </fieldset>
+    </section>
+  </main>
   </div >
+
+  <footer>
+    <form action="#" method="POST">
+      <input name="name" type="text" placeholder="Tu nombre">
+      <input name="email" type="email" placeholder="tucorreo@dominio.com">
+      <br>
+      <textarea name="message">Hey!!! Aquí escribe tu mensaje :D</textarea>
+      <input type="submit" value="Enviar" class="botonEnviar">
+    </form>
+    <div class="details">
+      <p>AC GAMES ©2022</p>
+      <p>T&eacute;rminos y pol&iacute;ticas de privacidad</p>
+      <p>Curriculum Vitae</p>
+    </div>
+  </footer>
 </body>
 </html>
