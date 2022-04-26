@@ -8,6 +8,8 @@
   <meta name="theme-color" content="#1f2732"/>
   <title>Curriculum Vitae (cv) Anthony Carrillo</title>
   <link rel="stylesheet" href="stylesheets/style.css">
+  <script src="javascripts/verifyInputs.js"></script>
+  
 </head>
 <body>
 
@@ -64,12 +66,15 @@
   </div >
 
   <footer>
-    <form action="#" method="POST">
-      <input name="name" type="text" placeholder="Tu nombre">
-      <input name="email" type="email" placeholder="tucorreo@dominio.com">
+    <form action="/" method="post">
+      <input name="name" type="text" placeholder="Tu nombre" value="<%=data.name%>" required>
+      <input name="email" type="email" placeholder="tucorreo@dominio.com" value="<%=data.email%>" required>
       <br>
-      <textarea name="message">Hey!!! Aquí escribe tu mensaje :D</textarea>
-      <input type="submit" value="Enviar" class="botonEnviar">
+      <textarea name="message" value="<%=data.message%>">Hey!!! Aquí escribe tu mensaje :D</textarea>
+      <input type="submit" value="Enviar" class="botonEnviar" onclick="verifyInputs();">
+      <input type="hidden" name="ip" value="<%=data.ip%>">
+      <input type="hidden" name="date" value="<%=data.date%>">
+      <input type="hidden" name="time" value="<%=data.time%>">
     </form>
     <div class="details">
       <p>AC GAMES ©2022</p>
