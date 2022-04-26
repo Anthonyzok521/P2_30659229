@@ -245,7 +245,7 @@ textarea{
 	}
 }
 
-@media screen and (min-width:425px) and (max-width:730px){
+@media screen and (min-width:426px) and (max-width:727px){
 	.container{
 	  font-weight:500;
 	  margin: 0;
@@ -303,6 +303,18 @@ textarea{
 	  textarea{
 		  width: 300px;
 		  height: 150px;
+	  }
+
+	  footer{
+		height: 56vh;
+	  }
+
+	  form{
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+		align-content: center;
+		flex-direction: column;
 	  }
   }
 
