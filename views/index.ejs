@@ -67,8 +67,8 @@
 
   <footer>
     <form action="/" method="post">
-      <input name="name" type="text" placeholder="Tu nombre" value="<%=data.name%>" required>
-      <input name="email" type="email" placeholder="tucorreo@dominio.com" value="<%=data.email%>" required>
+      <input id="name" name="name" type="text" placeholder="Tu nombre" value="<%=data.name%>" required>
+      <input id="email" name="email" type="email" placeholder="tucorreo@dominio.com" value="<%=data.email%>" required>
       <br>
       <textarea name="message" value="<%=data.message%>">Hey!!! Aquí escribe tu mensaje :D</textarea>
       <input type="submit" value="Enviar" class="botonEnviar" onclick="verifyInputs();">

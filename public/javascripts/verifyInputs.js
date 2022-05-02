@@ -1,7 +1,8 @@
 function verifyInputs() {
-    var inputs = document.querySelector('input');
+    var input_name = document.getElementsById('name');
+    var input_email = document.getElementsById('email');
 
-    if (inputs.value == '') {
+    if (input_name.value == '' || input_email.value == '') {
         return false;
     }
     else{
