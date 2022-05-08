@@ -37,37 +37,53 @@ router.get('/contacts', (req, res, next) => {
 
 router.post('/', (req, res) => {
 
-  let datetime = new Date();
-  let _date = datetime.toLocaleString();
-  let _time = datetime.toLocaleString();
-  let date = '';
-  let time = '';
-  let ip = req.headers['x-forwarded-for'];
+  //VARIBALES
 
-  for(let d = 0; d <= 9; d++){
-      if(_date[d] == '/'){
+  /*
+  * var = PARR CREAR VARIABLES GLOBALES
+  * const = PARA CREAR VARIABLES CONSTANTES
+  * let = PARA CREAR VARIABLES DE 
+  * */
+
+  let datetime = new Date();            // INTANCIANDO EL OBJETO DATE
+  let _date = datetime.toLocaleString();  // VARIABLES QUE RECIBEN LA HORA Y FECHA COMPLETA
+  let _time = datetime.toLocaleString();
+  let date = '';                          // VARAIBLES VACÍA PARA DESPUÉS USARLAS
+  let time = '';
+  let ip = req.headers['x-forwarded-for'];  // VARIABLE PARA OBTENER LA IP USANDO LA CABECERA DEL SERVIDOR
+
+  // BUCLES
+
+  for(let d = 0; d <= 9; d++){  // LA UTILIDAD QUE TIENE ES RECORRER LA POSICIÓN DE LAS VARIABLES _date y _time
+      if(_date[d] == '/'){      // CONDICIÓN QUE VERIFICA SI HAY UNA BARRA DIAGONAL PARA CAMBIARLA POR UN GUIÓN
         date += '-';
         continue;
       }
-      else if(_date[d] == ','){
+      else if(_date[d] == ','){ // SI HAY UNA COMA SE ELIMINA
         continue;
       }
-      date += _date[d];
+      date += _date[d];         // TODO VALOR QUE SE ENCUENTRE EN DICHA POSICIÓN SE LE AGREGA A LA VARIABLE date
   }
 
-  for(let t = 11; t <= 23; t++){
+  for(let t = 11; t <= 23; t++){ // RECORRE LA HORA
     time += _time[t];
   }
 
   if(ip){
     let ip_ls = ip.split(',');
     ip = ip_ls[ip_ls.length - 1];
+    
   }
   else{
     console.log('IP adress not found');
   }
 
+  console.log(ip);
+
+  // AQUI SON LAS CONSULTAS
   const query = "INSERT INTO contacts(name, email, message, date, time, ip) VALUES (?,?,?,?,?,?);";
+
+  // LOS NOMBRES DE LOS INPUTS DEL HTML
 	const messages = [req.body.name, req.body.email, req.body.message, date, time, ip];
 
 	database.run(query, messages, (err)=>{
@@ -81,7 +97,6 @@ router.post('/', (req, res) => {
 	});
           
 });
-
 
 router.get('/', (req, res, next) => {
   res.render('index.ejs',{data:{}});
