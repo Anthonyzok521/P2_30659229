@@ -2,16 +2,36 @@
 
 <html lang="es">
 <head>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','<%=ANALITYCS_KEY%>');</script>
+  <!-- End Google Tag Manager -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  
   <meta charset = "iso-8859-1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="theme-color" content="#1f2732"/>
+
   <title>Curriculum Vitae (cv) Anthony Carrillo</title>
   <link rel="stylesheet" href="stylesheets/style.css">
-  <script src="javascripts/verifyInputs.js"></script>
-  
 </head>
 <body>
+
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%=ANALITYCS_KEY%>"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div class="modal">
+    <h3>Completa el CAPTCHA</h3>
+    <p>Para enviar un mensaje debes indicar que no eres un robot.</p>
+    <button id="modal_OK">Ok</button>
+  </div>
 
   <div class="container">
     <div class="title">
@@ -67,14 +87,19 @@
 
   <footer>
     <form action="/" method="post">
-      <input name="name" type="text" placeholder="Tu nombre" value="<%=data.name%>" required>
-      <input name="email" type="email" placeholder="tucorreo@dominio.com" value="<%=data.email%>" required>
+      <input id="name" name="name" type="text" placeholder="Tu nombre" value="<%=data.name%>" required>
+      <input id="email" name="email" type="email" placeholder="tucorreo@dominio.com" value="<%=data.email%>" required>
       <br>
       <textarea name="message" value="<%=data.message%>">Hey!!! Aquí escribe tu mensaje :D</textarea>
-      <input type="submit" value="Enviar" class="botonEnviar" onclick="verifyInputs();">
-      <input type="hidden" name="ip" value="<%=data.ip%>">
-      <input type="hidden" name="date" value="<%=data.date%>">
-      <input type="hidden" name="time" value="<%=data.time%>">
+      <input type="submit" value="Enviar" class="botonEnviar">
+      <input id="ip" type="hidden" name="ip" value="<%=data.ip%>">
+      <input id="date" type="hidden" name="date" value="<%=data.date%>">
+      <input id="time" type="hidden" name="time" value="<%=data.time%>">
+      <input id="country" type="hidden" name="country" value="<%=data.country%>">
+
+      <div id="html_element">
+        <div class="g-recaptcha" data-sitekey="<%=CAPTCHA_KEY%>"></div>
+      </div>
     </form>
     <div class="details">
       <p>AC GAMES ©2022</p>
@@ -82,5 +107,42 @@
       <p>Curriculum Vitae</p>
     </div>
   </footer>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+        let xmlhttp = new XMLHttpRequest();
+        let url = "https://api.ipfind.com/me?auth=<%=API_KEY%>";
+
+        xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+              let result = JSON.parse(this.responseText);
+              let _continent = result.continent;
+              let _country = result.country;
+              let _city = result.city;
+              let input_country = document.getElementById('country');
+              input_country.value = _continent +", "+ _country +", "+ _city;
+            }
+        };
+
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+  </script>
+  <script>
+    let modal = document.querySelector('.modal');
+    let ok = document.querySelector('#modal_OK');
+    let res = "<%=res_cap%>";
+    modal.style.display = "none";
+    if(res == "false"){
+    modal.style.display = "flex";
+    }else if (res != "false"){
+      modal.style.display = "none";
+    }
+
+    ok.addEventListener('click', ()=>{
+      modal.style.display = "none";
+      res = "";
+    });
+
+  </script>
 </body>
 </html>
