@@ -12,6 +12,9 @@
     <h1>Datos</h1>
       <% for (const d of data) { %>
           <% if(d.name == "") { %>
+            <% console.log('Logged in as admin'); %>
+          <% } %>
+          <% else { %>
             <hr>
             <br>
             <p><strong>Nombre:</strong> <span><%= d.name%></span></p>
