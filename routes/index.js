@@ -6,7 +6,7 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const fetch = require('isomorphic-fetch');
 const data = path.join(__dirname, "data", "db.db");
-const data_admin = path.join(__dirname, "data_admin", "admin.db");
+const admin = path.join(__dirname, "data", "dba.db");
 const database = new sqlite3.Database(data, err => {
   if(err){
     return console.error(err.message);
@@ -15,7 +15,7 @@ const database = new sqlite3.Database(data, err => {
     console.log("Database conected");
   }
 });
-const admin = new sqlite3.Database(data_admin, err => {
+const data_admin = new sqlite3.Database(admin, err => {
   if(err){
     return console.error(err.message);
   }
@@ -30,16 +30,8 @@ const sendmail = require('../public/javascripts/sendMail');
 
 let response_cap = "null";
 let login = false;
-database.run(create, err => {
-  if(err){
-    return console.error(err.message);
-  }
-  else{
-    console.log("Table created");
-  }
-});
 
-admin.run(create_admin, err => {
+data_admin.run(create_admin, err => {
   if(err){
     return console.error(err.message);
   }
@@ -47,7 +39,16 @@ admin.run(create_admin, err => {
     console.log("Admin created");
     const query = "INSERT INTO admin(email_admin, password_admin) VALUES (?,?);";
 	  const data = [process.env.EMAIL_ADMIN, process.env.PASSWORD_ADMIN];
-    database.run(query, data);
+    data_admin.run(query, data);
+  }
+});
+
+database.run(create, err => {
+  if(err){
+    return console.error(err.message);
+  }
+  else{
+    console.log("Table created");
   }
 });
 
@@ -62,23 +63,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/contacts', (req, res, next) => {
   if(!login){
-
     res.render("login.ejs", {info:{}});
-
-  }else{
-
-    router.get('/contacts', (req, res, next) => {
-      login = false;
-      const query = "SELECT * FROM contacts;";
-      database.all(query, [], (err, rows) => {
-        if(err){
-          return console.error(err.message);
-        }
-        else{
-          res.render("contacts.ejs", {dbase:rows});
-        }
-      });
-    });
   }
 });
 
@@ -154,25 +139,38 @@ router.post('/', (req, res) => {
 });
 
 router.post('/login',  (req, res) => {
+
   const query = "SELECT * FROM admin;";
-  let email, password;
-    admin.all(query, [], (err, rows) => {
+    data_admin.all(query,(err, rows) => {
       if(err){
         return console.error(err.message);
       }
       else{
+        let email, password;
         for(const r of rows){
           email = r.email_admin;
           password = r.password_admin;
         }
+        if(req.body.email == email && req.body.pass == password){
+          login = true;
+          const query = "SELECT * FROM contacts;";
+          database.all(query, (err, rows) => {
+            if(err){
+              return console.error(err.message);
+            }
+            else{
+              console.log(":V");
+              res.render("contacts.ejs", {dbase:rows});
+              login = false;
+            }
+        });
+          console.log("XD");
+        }else{
+          console.log(`ERROR IN VERIFY THE DATAS`);
+        }
       }
     });
-    if(req.body.email == email && req.body.pass == password){
-      login = true;
-      res.redirect('/contacts');
-    }else{
-      console.log(`ERROR IN VERIFY THE DATAS`);
-    }
+  
 });
 
 module.exports = router;
