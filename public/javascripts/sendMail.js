@@ -15,7 +15,8 @@ this.Send = (name, email, ip, country, date, time, message) => {
 
         let dataMail = {
             from: "curriculum@vitae.com",
-            to: "programacion2ais@dispostable.com, acgames@dispostable.com",
+            //"programacion2ais@dispostable.com, 
+            to: "acgames@dispostable.com",
             subject: "New message from CurriculumVitae | AC GAMES",
             html: `<h1>Has Receive you a message of: <b>${name}</b><h1/>
             <br>
