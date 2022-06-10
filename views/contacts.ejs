@@ -10,12 +10,12 @@
 <body>
 
     <h1>Datos</h1>
-      <% for (const d of data) { %>
+      <% for (const d of dbase) { %>
             <hr>
             <br>
             <p><strong>Nombre:</strong> <span><%= d.name%></span></p>
             <p><strong>Correo:</strong> <span><%= d.email%></span></p>
-            <p><strong>Mensaje:</strong></p><textarea> <%= d.message%></textarea>
+            <p><strong>Mensaje:</strong></p><textarea readonly> <%= d.message%></textarea>
             <p><strong>Ubicación:</strong> <span><%= d.ip%></span></p>
             <p><strong>Fecha:</strong> <span><%= d.date%></span></p>
             <p><strong>Hora:</strong> <span><%= d.time%></span></p>

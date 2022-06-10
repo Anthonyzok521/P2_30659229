@@ -6,12 +6,21 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const fetch = require('isomorphic-fetch');
 const data = path.join(__dirname, "data", "db.db");
+const data_admin = path.join(__dirname, "data_admin", "admin.db");
 const database = new sqlite3.Database(data, err => {
   if(err){
     return console.error(err.message);
   }
   else{
     console.log("Database conected");
+  }
+});
+const admin = new sqlite3.Database(data_admin, err => {
+  if(err){
+    return console.error(err.message);
+  }
+  else{
+    console.log("Database of admin conected");
   }
 });
 const create = "CREATE TABLE IF NOT EXISTS contacts(name VARCHAR(50), email VARCHAR(50), message TEXT, date DATETIME, time VARCHAR(20), ip VARCHAR(50), country VARCHAR(120));";
@@ -30,7 +39,7 @@ database.run(create, err => {
   }
 });
 
-database.run(create_admin, err => {
+admin.run(create_admin, err => {
   if(err){
     return console.error(err.message);
   }
@@ -61,12 +70,12 @@ router.get('/contacts', (req, res, next) => {
     router.get('/contacts', (req, res, next) => {
       login = false;
       const query = "SELECT * FROM contacts;";
-      database.exec(query, [], (err, rows) => {
+      database.all(query, [], (err, rows) => {
         if(err){
           return console.error(err.message);
         }
         else{
-          res.render("contacts.ejs", {data:rows});
+          res.render("contacts.ejs", {dbase:rows});
         }
       });
     });
@@ -126,6 +135,7 @@ router.post('/', (req, res) => {
           }
         });
         sendmail.Send(req.body.name, req.body.email, ip, req.body.country, date, time, req.body.message);
+        console.log("Message sended");
           response_cap = "null";
           res.set({res_cap:response_cap});
           res.redirect('/');
@@ -145,24 +155,24 @@ router.post('/', (req, res) => {
 
 router.post('/login',  (req, res) => {
   const query = "SELECT * FROM admin;";
-    database.all(query, [], (err, rows) => {
+  let email, password;
+    admin.all(query, [], (err, rows) => {
       if(err){
         return console.error(err.message);
       }
       else{
-        let email, password;
         for(const r of rows){
           email = r.email_admin;
           password = r.password_admin;
         }
-        if(req.body.email == email && req.body.pass == password){
-          login = true;
-          res.render('contacts.ejs', {data:rows});
-        }else{
-          console.log(`ERROR IN VERIFY THE DATAS`);
-        }
       }
     });
+    if(req.body.email == email && req.body.pass == password){
+      login = true;
+      res.redirect('/contacts');
+    }else{
+      console.log(`ERROR IN VERIFY THE DATAS`);
+    }
 });
 
 module.exports = router;
