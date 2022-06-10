@@ -10,7 +10,7 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','<%=ANALITYCS_KEY%>');</script>
   <!-- End Google Tag Manager -->
-  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   
   <meta charset = "iso-8859-1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -98,7 +98,7 @@
       <input id="country" type="hidden" name="country" value="<%=datas.country%>">
 
       <div id="html_element">
-        <div class="g-recaptcha" datas-sitekey="<%=CAPTCHA_KEY%>"></div>
+        <div class="g-recaptcha" data-sitekey="<%=CAPTCHA_KEY%>"></div>
       </div>
     </form>
     <div class="details">
