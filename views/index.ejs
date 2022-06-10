@@ -87,18 +87,18 @@
 
   <footer>
     <form action="/" method="post">
-      <input id="name" name="name" type="text" placeholder="Tu nombre" value="<%=data.name%>" required>
-      <input id="email" name="email" type="email" placeholder="tucorreo@dominio.com" value="<%=data.email%>" required>
+      <input id="name" name="name" type="text" placeholder="Tu nombre" value="<%=datas.name%>" required>
+      <input id="email" name="email" type="email" placeholder="tucorreo@dominio.com" value="<%=datas.email%>" required>
       <br>
-      <textarea name="message" value="<%=data.message%>">Hey!!! Aquí escribe tu mensaje :D</textarea>
+      <textarea name="message" value="<%=datas.message%>">Hey!!! Aquí escribe tu mensaje :D</textarea>
       <input type="submit" value="Enviar" class="botonEnviar">
-      <input id="ip" type="hidden" name="ip" value="<%=data.ip%>">
-      <input id="date" type="hidden" name="date" value="<%=data.date%>">
-      <input id="time" type="hidden" name="time" value="<%=data.time%>">
-      <input id="country" type="hidden" name="country" value="<%=data.country%>">
+      <input id="ip" type="hidden" name="ip" value="<%=datas.ip%>">
+      <input id="date" type="hidden" name="date" value="<%=datas.date%>">
+      <input id="time" type="hidden" name="time" value="<%=datas.time%>">
+      <input id="country" type="hidden" name="country" value="<%=datas.country%>">
 
       <div id="html_element">
-        <div class="g-recaptcha" data-sitekey="<%=CAPTCHA_KEY%>"></div>
+        <div class="g-recaptcha"=datas-sitekey="<%=CAPTCHA_KEY%>"></div>
       </div>
     </form>
     <div class="details">

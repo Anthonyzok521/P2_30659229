@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/stylesheets/stylelogin.css">
+</head>
+<body>
+    <main>
+        <h1>Iniciar Sesión</h1>
+
+        <p>Inicia sesión para continuar</p>
+
+        <section class="login">
+            <form action="/login" method="post">
+                <div>
+                    <label for="email">Correo</label>
+                    <input name="email" type="email" value="<%=info.email%>" placeholder="correo@dominio.com" required>
+                </div>
+                <div>
+                    <label id="pass" for="pass">Clave </label>
+                    <input name="pass" type="password" value="<%=info.pass%>" placeholder="******" required>
+                </div>
+                <div class="btn">
+                    <input id="btnLogin" type="submit" value="Iniciar">
+                </div>
+            </form>
+        </section>
+        <footer>
+        <div class="details">
+            <p>AC GAMES ©2022</p>
+            <p>T&eacute;rminos y pol&iacute;ticas de privacidad</p>
+            <p>Curriculum Vitae</p>
+          </div>
+        </footer>
+    </main>
+</body>
+</html>
