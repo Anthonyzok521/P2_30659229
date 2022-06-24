@@ -34,6 +34,7 @@
                 <div class="error">
                     <p name="msg" class="msg"><%=M%></p>
                     <input id="OAuth" name="OAuth" value="<%=G%>" hidden>
+                    <input id="Google" name="Google" value="" hidden>
                 </div>
                 <div>
                     <a id="signout" href="/" onclick="signOut();">Desconectar</a>
@@ -50,10 +51,10 @@
     </main>
     <script>
         let input_OAuth = document.querySelector("#OAuth"),
+        usingGoogle = document.querySelector("#Google"),
         signout = document.querySelector("#signout");
         function onSignIn(googleUser) {
 
-        document.form.submit();
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
         /* console.log("ID: " + profile.getId()); // Don't send this directly to your server!
@@ -69,8 +70,11 @@
 
         if(id_token != ""){
             input_OAuth.value = id_token;
+            usingGoogle.value = "Si"
+            document.form.submit();
         }else{
             input_OAuth.value = "";
+            usingGoogle.value = "No"
             signout.style.visibility = "visible";
         }
 
