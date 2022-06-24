@@ -32,7 +32,6 @@ main p{
 
 #signout{
     visibility: hidden;
-    visibility: visible;
     color: white;
     font-size: 20px;
     text-decoration: none;
