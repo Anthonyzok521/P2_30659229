@@ -32,6 +32,15 @@ main p{
 
 #signout{
     visibility: hidden;
+    visibility: visible;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    background-color: #4a8af5;
+    border-radius: 5px;
+    width: 110px;
+    text-align: center;
+    height: 25px;
 }
 
 .login{

@@ -35,7 +35,9 @@
                     <p name="msg" class="msg"><%=M%></p>
                     <input id="OAuth" name="OAuth" value="<%=G%>" hidden>
                 </div>
-                <a id="signout" href="#" onclick="signOut();">Desconectar</a>
+                <div>
+                    <a id="signout" href="#" onclick="signOut();">Desconectar</a>
+                </div>
             </form>
         </section>
         <footer>
@@ -69,7 +71,7 @@
             input_OAuth.value = id_token;
         }else{
             input_OAuth.value = "";
-            signOut.style.visibility = "visible";
+            signout.style.visibility = "visible";
         }
 
   }
