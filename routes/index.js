@@ -63,6 +63,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/contacts', (req, res, next) => {
   if(!login){
+    red.redirect("/login");
     res.render("login.ejs", {info:{}, M:"", CLIENT_ID:process.env.CLIENT_ID});
   }
 });
