@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="1032741400749-5vj0lcehk60olhjjm317o98utr05ulkf.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="<%=CLIENT_ID%>">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>Login</title>
     <link rel="stylesheet" href="/stylesheets/stylelogin.css">
@@ -33,8 +33,8 @@
                 <div class="g-signin2 GoogleLogin" data-onsuccess="onSignIn" data-theme="dark"></div>
                 <div class="error">
                     <p name="msg" class="msg"><%=M%></p>
-                    <input id="OAuth" name="OAuth" value="<%=G%>" hidden>
-                    <input id="Google" name="Google" value="" hidden>
+                    <input id="oauth" name="oauth" value="<%=info.oauth%>" hidden>
+                    <input id="google" name="google" value="" hidden>
                 </div>
                 <div>
                     <a id="signout" href="/" onclick="signOut();">Desconectar</a>
@@ -50,8 +50,8 @@
         </footer>
     </main>
     <script>
-        let input_OAuth = document.querySelector("#OAuth"),
-        usingGoogle = document.querySelector("#Google"),
+        let input_OAuth = document.querySelector("#oauth"),
+        usingGoogle = document.querySelector("#google"),
         signout = document.querySelector("#signout");
         function onSignIn(googleUser) {
 

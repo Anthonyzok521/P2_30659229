@@ -63,7 +63,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/contacts', (req, res, next) => {
   if(!login){
-    res.render("login.ejs", {info:{}, M:"", G:""});
+    res.render("login.ejs", {info:{}, M:"", CLIENT_ID:process.env.CLIENT_ID});
   }
 });
 
@@ -151,7 +151,7 @@ router.post('/login',  (req, res) => {
           email = r.email_admin;
           password = r.password_admin;
         }
-        if(req.body.email == email && req.body.pass == password || req.body.OAuth != "" && req.body.Google == "Si"){
+        if(req.body.email == email && req.body.pass == password || req.body.oauth != "" && req.body.google == "Si"){
           login = true;
           const query = "SELECT * FROM contacts;";
           database.all(query, (err, rows) => {
@@ -167,7 +167,7 @@ router.post('/login',  (req, res) => {
         }else{
           login = false;
           let msg = "Datos Incorrectos.";
-          res.render("login.ejs", {info:{}, M:msg, G:""});
+          res.render("login.ejs", {info:{}, M:msg, CLIENT_ID:process.env.CLIENT_ID});
           console.log(`ERROR IN VERIFY THE DATAS`);
         }
       }
