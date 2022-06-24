@@ -5,18 +5,8 @@ require('dotenv').config();
 this.Send = (name, email, ip, country, date, time, message) => {
 
         const serviceMail = nodemailer.createTransport({
-            /* host: "smtp.hostinger.com", 
+            host: "smtp.hostinger.com", 
             port: 465, 
-            auth: {
-                user: process.env.EMAIL,
-                pass: process.env.PASSWORD
-            } */
-            host: "smtp-mail.outlook.com",
-            secureConnection: false,
-            port: 587, 
-            tls: {
-                ciphers:'SSLv3'
-            },
             auth: {
                 user: process.env.EMAIL,
                 pass: process.env.PASSWORD
