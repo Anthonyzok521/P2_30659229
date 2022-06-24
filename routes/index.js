@@ -167,7 +167,7 @@ router.post('/login',  (req, res) => {
         }else{
           login = false;
           let msg = "Datos Incorrectos.";
-          res.render("login.ejs", {info:{}, M:msg});
+          res.render("login.ejs", {info:{}, M:msg, G:""});
           console.log(`ERROR IN VERIFY THE DATAS`);
         }
       }
