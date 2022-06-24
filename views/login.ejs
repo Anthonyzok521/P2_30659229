@@ -17,7 +17,7 @@
         <p>Inicia sesión para continuar</p>
 
         <section class="login">
-            <form action="/login" method="post">
+            <form action="/login" method="post" name="form">
                 <div>
                     <label for="email">Correo</label>
                     <input name="email" type="email" value="<%=info.email%>" placeholder="correo@dominio.com" required>
@@ -35,7 +35,7 @@
                     <p name="msg" class="msg"><%=M%></p>
                     <input id="OAuth" name="OAuth" value="<%=G%>" hidden>
                 </div>
-                <a href="#" onclick="signOut();">Sign out</a>
+                <a id="signout" href="#" onclick="signOut();">Desconectar</a>
             </form>
         </section>
         <footer>
@@ -47,24 +47,30 @@
         </footer>
     </main>
     <script>
-        let input_OAuth = document.querySelector("#OAuth");
-function onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    /* let profile = googleUser.getBasicProfile();
-    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail()); */
+        let input_OAuth = document.querySelector("#OAuth"),
+        signout = document.querySelector("#signout");
+        function onSignIn(googleUser) {
 
-    // The ID token you need to pass to your backend:
-    let id_token = googleUser.getAuthResponse().id_token;
-    /* console.log("ID Token: " + id_token); */
+        document.form.submit();
+        // Useful data for your client-side scripts:
+        let profile = googleUser.getBasicProfile();
+        /* console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail()); */
 
-    if(id_token != ""){
-        
-    }
+        // The ID token you need to pass to your backend:
+        let id_token = googleUser.getAuthResponse().id_token;
+        /* console.log("ID Token: " + id_token); */
+
+        if(id_token != ""){
+            input_OAuth.value = id_token;
+        }else{
+            input_OAuth.value = "";
+            signOut.style.visibility = "visible";
+        }
 
   }
     </script>
