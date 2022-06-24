@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="1032741400749-5vj0lcehk60olhjjm317o98utr05ulkf.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>Login</title>
     <link rel="stylesheet" href="/stylesheets/stylelogin.css">
 </head>
@@ -26,6 +29,11 @@
                 <div class="btn">
                     <input id="btnLogin" type="submit" value="Iniciar">
                 </div>
+                <p> O </p>
+                <div class="g-signin2 GoogleLogin" data-onsuccess="onSignIn" data-theme="dark"></div>
+                <div class="error">
+                    <p name="msg" class="msg"><%=M%></p>
+                </div>
             </form>
         </section>
         <footer>
@@ -36,5 +44,6 @@
           </div>
         </footer>
     </main>
+    <script src="/javascripts/OAuth2.js"></script>
 </body>
 </html>

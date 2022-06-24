@@ -63,7 +63,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/contacts', (req, res, next) => {
   if(!login){
-    res.render("login.ejs", {info:{}});
+    res.render("login.ejs", {info:{}, M:""});
   }
 });
 
@@ -159,13 +159,15 @@ router.post('/login',  (req, res) => {
               return console.error(err.message);
             }
             else{
-              console.log(":V");
               res.render("contacts.ejs", {dbase:rows});
               login = false;
             }
         });
-          console.log("XD");
+
         }else{
+          login = false;
+          let msg = "Datos Incorrectos.";
+          res.render("login.ejs", {info:{}, M:msg});
           console.log(`ERROR IN VERIFY THE DATAS`);
         }
       }
