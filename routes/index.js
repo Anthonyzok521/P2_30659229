@@ -152,7 +152,7 @@ router.post('/login',  (req, res) => {
           email = r.email_admin;
           password = r.password_admin;
         }
-        if(req.body.email == email && req.body.pass == password || req.body.oauth != "" && req.body.google == "Si"){
+        if(req.body.email == email && req.body.pass == password){
           login = true;
           const query = "SELECT * FROM contacts;";
           database.all(query, (err, rows) => {
