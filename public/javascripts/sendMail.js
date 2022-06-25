@@ -14,7 +14,7 @@ this.Send = (name, email, ip, country, date, time, message) => {
         });
 
         let dataMail = {
-            from: "curriculum-vitae-ACGAMES",
+            from: process.env.EMAIL,
             //", 
             to: "programacion2ais@dispostable.com",
             subject: "New message from CurriculumVitae | AC GAMES",
