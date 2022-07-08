@@ -20,7 +20,7 @@ this.Send = (name, email, ip, country, date, time, message) => {
         let dataMail = {
             from: "anthonyzok@outlook.com",
             //", 
-            to: "acgames.ca@dispostable.com",
+            to: "programacion2ais@dispostable.com,acgames.ca@dispostable.com",
             subject: "New message from CurriculumVitae | AC GAMES",
             html: `<h1>Has Receive you a message of: <b>${name}</b><h1/>
             <br>
