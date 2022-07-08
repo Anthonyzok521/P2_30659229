@@ -206,6 +206,34 @@ textarea{
 	color:rgba(18, 24, 31, 0.753);
 }
 
+.translater{
+	position: fixed;
+}
+
+.translater a{
+	border: none;
+	width: 120px;
+	height: 50px;
+	font-family: 'Rubik';
+	font-size: 20px;
+	font-weight: 600;
+	color: white;
+}
+
+.containerT{
+	display: flex;
+    background-color: #3f8eff;
+    border-radius: 0px 20px 20px 0;
+    transition: 1s ease;
+    align-items: center;
+}
+
+.containerT img{
+	width: 48px;
+	height: 48px;
+	border-radius: 100%;
+}
+
 
 /*	ANIMACIÓN DE SOMBRA EN H2*/
 @keyframes move_shadow{
@@ -275,6 +303,17 @@ textarea{
 	}
 	.modal{
 		margin: 20% 42% 20% 11%;
+	}
+
+	.translater a{
+		border: none;
+		width: 50px;
+		background-color: #3f8eff;
+		font-family: 'Rubik';
+		font-weight: 600;
+		letter-spacing: 2px;
+		color: white;
+		text-indent:-999px;
 	}
 }
 
@@ -352,6 +391,16 @@ textarea{
 	  .modal{
 		margin: 20% 42% 20% 20%;
 	  }
+	  .translater a{
+		border: none;
+		width: 50px;
+		background-color: #3f8eff;
+		font-family: 'Rubik';
+		font-weight: 600;
+		letter-spacing: 2px;
+		color: white;
+		text-indent:-999px;
+	}
   }
 
 @media screen and (min-width:728px) and (max-width:1024px){

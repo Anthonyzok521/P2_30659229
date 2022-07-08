@@ -27,6 +27,14 @@ const create = "CREATE TABLE IF NOT EXISTS contacts(name VARCHAR(50), email VARC
 const create_admin = "CREATE TABLE IF NOT EXISTS admin(email_admin VARCHAR(50), password_admin VARCHAR(12));";
 require('dotenv').config();
 const sendmail = require('../public/javascripts/sendMail');
+const { I18n } = require('i18n');
+const i18n = new I18n({
+  locales: ['es', 'en'],
+  directory: path.join(__dirname, '/translate'),
+  defaultLocale: 'es',
+});
+
+
 
 let response_cap = "null";
 let login = false;
@@ -52,13 +60,44 @@ database.run(create, err => {
   }
 });
 
+let lang = "";
+
 router.get('/', (req, res, next) => {
+  i18n.init(req, res);
+  lang = req.acceptsLanguages('es');
   login = false;
   res.render('index.ejs',{datas:{},
   res_cap:response_cap,
   API_KEY:process.env.API_KEY,
   CAPTCHA_KEY:process.env.CAPTCHA_KEY,
-  ANALITYCS_KEY:process.env.ANALITYCS_KEY});
+  ANALITYCS_KEY:process.env.ANALITYCS_KEY,
+  IMG_TRANSLATE:"/images/es.png"});
+});
+
+router.post('/translated',(req,res,next)=>{
+  
+  if(lang){
+    i18n.init(req, res)
+    res.setLocale('en');
+    res.render('index.ejs',{datas:{},
+    res_cap:response_cap,
+    API_KEY:process.env.API_KEY,
+    CAPTCHA_KEY:process.env.CAPTCHA_KEY,
+    ANALITYCS_KEY:process.env.ANALITYCS_KEY,
+    IMG_TRANSLATE:"/images/en.png"});
+    lang = false;
+  }
+  else if(!lang){
+    i18n.init(req, res)
+    res.setLocale('es');
+    res.render('index.ejs',{datas:{},
+    res_cap:response_cap,
+    API_KEY:process.env.API_KEY,
+    CAPTCHA_KEY:process.env.CAPTCHA_KEY,
+    ANALITYCS_KEY:process.env.ANALITYCS_KEY,
+    IMG_TRANSLATE:"/images/es.png"});
+    lang = true;
+  }
 });
 
 router.get('/contacts', (req, res, next) => {
@@ -68,7 +107,7 @@ router.get('/contacts', (req, res, next) => {
   }
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
 
   let ip = req.headers['x-forwarded-for'];
   let dt = new Date();
@@ -105,13 +144,10 @@ router.post('/', (req, res) => {
   const query = "INSERT INTO contacts(name, email, message, date, time, ip, country) VALUES (?,?,?,?,?,?,?);";
 	const messages = [req.body.name, req.body.email, req.body.message, date, time, ip, req.body.country];
   const url = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.SECRET_KEY}&response=${req.body['g-recaptcha-response']}`;
+  const api = await fetch(url, {method:"post",});
+  const google = await api.json();
 
-  fetch(url, {
-      method: "post",
-    })
-    .then((response) => response.json())
-    .then((google_response) => {
-      if (google_response.success == true) {
+  if(google.success == true){
         database.run(query, messages, (err)=>{
           if (err){
             return console.error(err.message);
@@ -125,19 +161,14 @@ router.post('/', (req, res) => {
           response_cap = "null";
           res.set({res_cap:response_cap});
           res.redirect('/');
+        }else{
 
-    } else {
       console.log("ERROR TO THE VERIFY THE reCAPTCHA");
       response_cap = "false";
       res.set({res_cap:response_cap});
       res.redirect('/');
     }
-    })
-    .catch((error) => {
-    
-    console.log(error);
-  });
-});
+  });  
 
 router.post('/login',  (req, res) => {
 

@@ -37,30 +37,37 @@
   <!-- End Google Tag Manager (noscript) -->
 
   <div class="modal">
-    <h3>Completa el CAPTCHA</h3>
-    <p>Para enviar un mensaje debes indicar que no eres un robot.</p>
+    <h3><%=__('title_CAPTCHA')%></h3>
+    <p><%=__('msg_CAPTCHA')%></p>
     <button id="modal_OK">Ok</button>
   </div>
+
+  <form name="form" action="/translated" method="post" class="translater">
+      <a class="containerT" onclick="submit();">
+      <p class="esen"><%=__('esen_btn_value')%></p>
+      <img src="<%=IMG_TRANSLATE%>" alt="Español">
+      </a>
+  </form>
 
   <div class="container">
     <div class="title">
       <img src="images/ACGAMES.jpg" width="130px" height="130px">
       <div class="resume">
         <h1>Anthony Carrillo</h1>
-        <small>Ingeniero de Software</small>
-        <p>Soy un ingeniero de software, desarrollo apps para escritorio(PCs) y dispositivos m&oacute;viles(Android) con 3 a&ntilde;os de experiencia creando programas y videojuegos b&aacute;sicos bajo mi misma "empresa" AC GAMES.</p> 
+        <small><%=__('MyProfession')%></small>
+        <p><%=__('Resume')%></p> 
       </div>
     </div>
 
     <main>
     <section class="skill">
-      <h2>Habilidades</h2>
+      <h2><%=__('Skills')%></h2>
       <ul>
-        <li><i class="point">• </i>Escribiendo c&oacute;digo.</li>
-        <li><i class="point">• </i>Crear videojuegos.</li>
-        <li><i class="point">• </i>Desarrollar programas multiplataforma.</li>
-        <li><i class="point">• </i>Mantenimiento a computadoras.</li>
-        <li><i class="point">• </i>Instalaci&oacute;n de software y sistema operativo.</li>
+        <li><i class="point">• </i><%=__('skill_1')%></li>
+        <li><i class="point">• </i><%=__('skill_2')%></li>
+        <li><i class="point">• </i><%=__('skill_3')%></li>
+        <li><i class="point">• </i><%=__('skill_4')%></li>
+        <li><i class="point">• </i><%=__('skill_5')%></li>
         <li><i class="point">• </i>C++, C# y Python.
         <li><i class="point">• </i>MySQL.</li>
         <li><i class="point">• </i>GIMP, Photoshop e Inkscape.</li>
@@ -68,23 +75,23 @@
     </section>
 
     <section class="exp">
-      <h2>Experiencia</h2>
-      <b>Ingeniero de software junior</b><br>
-      <small><i>AC GAMES | 2020-pesente</i></small>
-      <p>Desarrollador, instalo y configuro aplicaciones, dise&ntilde;o gr&aacute;fico, testeo de apliciones, lanzamiento de la aplicaci&oacute;n, trabajar con simbolo del sistema, crear versiones de respaldo con git y limpieza de las computadoras.</p>
+      <h2><%=__('Experience')%></h2>
+      <b><%=__('MyExperience')%></b><br>
+      <small><i><%=__('Bussines')%></i></small>
+      <p><%=__('ExperienceResume')%></p>
     </section>
 
     <section class="educt">
-      <h2>Educaci&oacute;n</h2>
+      <h2><%=__('Education')%></h2>
       <ul>
-      <li><i class="point">• </i>Bachillerato en U.E.P "Juan de Bol&iacute;var y Villegas" Villa de Cura, Estado Aragua.</li>
-      <li><i class="point">• </i>Grado de estudio: Actualmente universitario en la Uiversidad Nacional Experimental R&oacute;mulo Gallegos(UNERG), Ingenier&iacute;a de Sistemas(AIS), San Juan de los Morros, Estado Gu&aacute;rico. </li>
+      <li><i class="point">• </i><%=__('high_school')%></li>
+      <li><i class="point">• </i><%=__('calix')%></li>
     </ul>
   </section>
 
     <section class="contact">
-      <h2>Contacto</h2>
-      <p><b>Telf: </b><i>0412-1438904</i></p>    
+      <h2><%=__('Contact')%></h2>
+      <p><b><%=__('Number')%> </b><i>0412-1438904</i></p>    
       <ul>
         <li><i class="point">• </i><b>Correo: </b><i><a href="https://anthonyzok521@gmail.com">anthonyzok521@gmail.com</a></i></li>
         <li><i class="point">• </i><b>Twitter: </b><i><a href="https://twitter.com/AC_GAMES_">@AC_GAMES_</a></i></li>
@@ -96,11 +103,11 @@
 
   <footer>
     <form action="/" method="post">
-      <input id="name" name="name" type="text" placeholder="Tu nombre" value="<%=datas.name%>" required>
-      <input id="email" name="email" type="email" placeholder="tucorreo@dominio.com" value="<%=datas.email%>" required>
+      <input id="name" name="name" type="text" placeholder="<%=__('input_name')%>" value="<%=datas.name%>" required>
+      <input id="email" name="email" type="email" placeholder="<%=__('input_email')%>" value="<%=datas.email%>" required>
       <br>
-      <textarea name="message" value="<%=datas.message%>">Hey!!! Aquí escribe tu mensaje :D</textarea>
-      <input type="submit" value="Enviar" class="botonEnviar">
+      <textarea name="message" value="<%=datas.message%>"><%=__('textarea')%></textarea>
+      <input type="submit" value="<%=__('Send')%>" class="botonEnviar">
       <input id="ip" type="hidden" name="ip" value="<%=datas.ip%>">
       <input id="date" type="hidden" name="date" value="<%=datas.date%>">
       <input id="time" type="hidden" name="time" value="<%=datas.time%>">
@@ -112,7 +119,7 @@
     </form>
     <div class="details">
       <p>AC GAMES ©2022</p>
-      <p>T&eacute;rminos y pol&iacute;ticas de privacidad</p>
+      <p><%=__('footer')%></p>
       <p>Curriculum Vitae</p>
     </div>
   </footer>
@@ -153,5 +160,6 @@
     });
 
   </script>
+  <script src="/javascripts/translateDocument.js"></script>
 </body>
 </html>
