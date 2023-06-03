@@ -5,12 +5,9 @@ require('dotenv').config();
 this.Send = (name, email, ip, country, date, time, message) => {
 
         const serviceMail = nodemailer.createTransport({
-            host: "smtp-mail.outlook.com",
+            host: "smtp.hostinger.com",
     			secureConnection: false,
-    			port: 587, 
-    			tls: {
-       				ciphers:'SSLv3'
-    			},
+    			port: 465, 
 				auth: {
 					user: process.env.EMAIL,
 					pass: process.env.PASSWORD
@@ -18,9 +15,9 @@ this.Send = (name, email, ip, country, date, time, message) => {
         });
 
         let dataMail = {
-            from: "anthonyzok@outlook.com",
+            from: process.env.EMAIL,
             //", 
-            to: "programacion2ais@dispostable.com,acgames.ca@dispostable.com",
+            to: "anthonyzok521@gmail.com",
             subject: "New message from CurriculumVitae | AC GAMES",
             html: `<h1>Has Receive you a message of: <b>${name}</b><h1/>
             <br>
