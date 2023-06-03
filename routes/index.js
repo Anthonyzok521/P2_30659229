@@ -144,30 +144,42 @@ router.post('/', async (req, res) => {
   const query = "INSERT INTO contacts(name, email, message, date, time, ip, country) VALUES (?,?,?,?,?,?,?);";
 	const messages = [req.body.name, req.body.email, req.body.message, date, time, ip, req.body.country];
   const url = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.SECRET_KEY}&response=${req.body['g-recaptcha-response']}`;
-  const api = await fetch(url, {method:"post",});
-  const google = await api.json();
+  fetch(url, {method:"post",})
+    .then((response) => response.json())
+    .then((google_response) => {
 
-  if(google.success == true){
-        database.run(query, messages, (err)=>{
-          if (err){
-            return console.error(err.message);
-          }
-          else{
-            console.log("A user has commented");
-          }
-        });
-        sendmail.Send(req.body.name, req.body.email, ip, req.body.country, date, time, req.body.message);
-        console.log("Message sended");
-          response_cap = "null";
-          res.set({res_cap:response_cap});
-          res.redirect('/');
-        }else{
-
+    // google_response is the object return by
+    // google as a response
+    if (google_response.success == true) {
+      //   if captcha is verified
+      database.run(query, messages, (err)=>{
+        if (err){
+          return console.error(err.message);
+        }
+        else{
+          console.log("A user has commented");
+        }
+      });
+      sendmail.Send(req.body.name, req.body.email, ip, req.body.country, date, time, req.body.message);
+      console.log("Message sended");
+        response_cap = "null";
+        res.set({res_cap:response_cap});
+        res.redirect('/');
+      console.log({ response: "Successful" });
+    } else {
+      // if captcha is not verified
+      console.log({ response: "Failed" });
       console.log("ERROR TO THE VERIFY THE reCAPTCHA");
       response_cap = "false";
       res.set({res_cap:response_cap});
       res.redirect('/');
     }
+  })
+  .catch((error) => {
+      // Some error while verify captcha
+    console.eror({ error });
+  });
+  //const google = await api.json();
   });  
 
 router.post('/login',  (req, res) => {
